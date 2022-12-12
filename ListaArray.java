@@ -21,7 +21,6 @@ public class ListaArray implements EstruturaDeDados{
         this.elements[contador]=chave;
         contador++;
         return true;
-
     }
 
     @Override
@@ -29,9 +28,12 @@ public class ListaArray implements EstruturaDeDados{
         for(int i = 0; i < contador; i++){
             if(this.elements[i] == chave){
                 this.elements[i] = 0;
-                for(int j =0; j<elements.length;j++){
-                    int x = elements[i];
-                    
+                for(int j=i; j < elements.length;j++){
+                    int x = elements[j];
+                    if (elements[i] < x){
+                        elements[i]=elements[j-1];
+                        elements[j]= elements[j+1];
+                    }    
                 }
                 return true;
             }
@@ -76,9 +78,16 @@ public class ListaArray implements EstruturaDeDados{
     public static void main(String[] args) {
         ListaArray r = new ListaArray();
         r.insert(1);
-        System.out.println(r.getElemento(0));
-        r.search(1);
-        
+        r.insert(2);
+        r.insert(3);
+        r.insert(4);
+        System.out.println(r.getElemento(3));
+        System.out.println(r.search(2));
+        System.out.println(r.delete(2));
+        System.out.println(r.search(2));
+
+
+
         
         
     }
